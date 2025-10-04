@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Testimonials - Dr. Paul Mwambu</title>
+    <meta name="description" content="Read testimonials from colleagues, partners, and stakeholders about Dr. Paul Mwambu's work in agriculture, rural development, and leadership.">
+    <meta name="keywords" content="Testimonials, Dr. Paul Mwambu, Agriculture, Uganda, Leadership, Colleagues, Partners">
+    <meta property="og:title" content="Testimonials - Dr. Paul Mwambu">
+    <meta property="og:description" content="Read testimonials from colleagues, partners, and stakeholders about Dr. Paul Mwambu's work in agriculture, rural development, and leadership.">
+    <meta property="og:type" content="website">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-bg text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Testimonials</h1>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                What colleagues, partners, and stakeholders say about Dr. Paul Mwambu's 
+                work in agriculture, rural development, and leadership.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Testimonials -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% if testimonials %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card animate-on-scroll">
+                <div class="flex items-center mb-4">
+                    {% if testimonial.image %}
+                    <img src="{{ testimonial.image.url }}" alt="{{ testimonial.author }}" class="w-12 h-12 rounded-full object-cover mr-4">
+                    {% else %}
+                    <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-primary-600 font-bold text-lg">{{ testimonial.author|first }}</span>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <h4 class="font-semibold text-gray-900">{{ testimonial.author }}</h4>
+                        <p class="text-sm text-gray-600">{{ testimonial.position }}</p>
+                        <p class="text-sm text-gray-500">{{ testimonial.organization }}</p>
+                    </div>
+                </div>
+                <blockquote class="text-gray-700 italic leading-relaxed">
+                    "{{ testimonial.quote }}"
+                </blockquote>
+                {% if testimonial.featured %}
+                <div class="mt-4">
+                    <span class="bg-accent-100 text-accent-800 px-2 py-1 rounded-full text-xs font-medium">
+                        Featured
+                    </span>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% else %}
+        <div class="text-center py-16">
+            <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">No Testimonials Available</h3>
+            <p class="text-gray-600">Testimonials will be added soon.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Testimonial Categories -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">What People Say</h2>
+            <p class="section-subtitle">Testimonials from different sectors and organizations</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="card card-hover animate-on-scroll text-center">
+                <div class="card-body">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Government Officials</h3>
+                    <p class="text-gray-600 text-sm">Colleagues from government ministries and agencies</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll text-center">
+                <div class="card-body">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Agricultural Partners</h3>
+                    <p class="text-gray-600 text-sm">Farmers, cooperatives, and agricultural organizations</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll text-center">
+                <div class="card-body">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">International Organizations</h3>
+                    <p class="text-gray-600 text-sm">World Bank, UNDP, and other global partners</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll text-center">
+                <div class="card-body">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Academic & Research</h3>
+                    <p class="text-gray-600 text-sm">Researchers, academics, and educational institutions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sample Testimonials (Placeholder Content) -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Sample Testimonials</h2>
+            <p class="section-subtitle">Examples of the kind of recognition Dr. Paul Mwambu receives</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="testimonial-card animate-on-scroll">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-primary-600 font-bold text-lg">JM</span>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Dr. Jane Mukasa</h4>
+                        <p class="text-sm text-gray-600">Director of Agricultural Research</p>
+                        <p class="text-sm text-gray-500">National Agricultural Research Organization (NARO)</p>
+                    </div>
+                </div>
+                <blockquote class="text-gray-700 italic leading-relaxed">
+                    "Dr. Paul Mwambu's leadership in crop certification has transformed Uganda's agricultural export standards. His dedication to quality assurance and farmer empowerment is truly commendable."
+                </blockquote>
+            </div>
+            
+            <div class="testimonial-card animate-on-scroll">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-green-600 font-bold text-lg">RK</span>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Robert Kato</h4>
+                        <p class="text-sm text-gray-600">Chairman</p>
+                        <p class="text-sm text-gray-500">Uganda National Farmers Federation</p>
+                    </div>
+                </div>
+                <blockquote class="text-gray-700 italic leading-relaxed">
+                    "Working with Dr. Paul Mwambu has been instrumental in advancing our farming practices. His vision for sustainable agriculture aligns perfectly with our goals for rural development."
+                </blockquote>
+            </div>
+            
+            <div class="testimonial-card animate-on-scroll">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-blue-600 font-bold text-lg">SM</span>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Sarah Mbabazi</h4>
+                        <p class="text-sm text-gray-600">Program Manager</p>
+                        <p class="text-sm text-gray-500">World Bank Uganda</p>
+                    </div>
+                </div>
+                <blockquote class="text-gray-700 italic leading-relaxed">
+                    "Dr. Paul Mwambu's expertise in agricultural policy and implementation has been crucial to the success of our rural development programs in Uganda."
+                </blockquote>
+            </div>
+            
+            <div class="testimonial-card animate-on-scroll">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-yellow-600 font-bold text-lg">DN</span>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Dr. David Nsubuga</h4>
+                        <p class="text-sm text-gray-600">Professor of Agriculture</p>
+                        <p class="text-sm text-gray-500">Makerere University</p>
+                    </div>
+                </div>
+                <blockquote class="text-gray-700 italic leading-relaxed">
+                    "Dr. Paul Mwambu's contributions to agricultural research and policy development have significantly impacted Uganda's food security and rural livelihoods."
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-16 hero-bg text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Work Together?</h2>
+        <p class="text-xl text-blue-100 mb-8">
+            Join the many organizations and individuals who have benefited from 
+            Dr. Paul Mwambu's expertise and leadership in agriculture and rural development.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'portfolio:contact' %}" class="btn-primary bg-white text-primary-600 hover:bg-gray-100">
+                Get In Touch
+            </a>
+            <a href="{% url 'portfolio:about' %}" class="btn-outline border-white text-white hover:bg-white hover:text-primary-600">
+                Learn More
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

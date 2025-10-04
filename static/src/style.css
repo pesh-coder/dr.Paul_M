@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom component classes used in templates */
+@layer components {
+  .btn-primary { @apply inline-flex items-center px-5 py-3 rounded-xl font-semibold bg-primary-600 text-white hover:bg-primary-700 transition; }
+  .btn-outline { @apply inline-flex items-center px-5 py-3 rounded-xl font-semibold border border-primary-600 text-primary-600 hover:bg-primary-50 transition; }
+  .card        { @apply bg-white rounded-2xl shadow-sm; }
+  .card-body   { @apply p-6; }
+  .card-hover  { @apply hover:shadow-md transition; }
+  .hero-bg     { @apply bg-gradient-to-r from-blue-700 to-blue-500; }
+  .section-title { @apply text-3xl md:text-4xl font-bold; }
+  .section-subtitle { @apply mt-2 text-gray-600; }
+}

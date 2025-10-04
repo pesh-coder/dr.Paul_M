@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Search Results - Dr. Paul Mwambu</title>
+    <meta name="description" content="Search results for Dr. Paul Mwambu's portfolio, including projects, awards, blog posts, and more.">
+    <meta name="keywords" content="Search, Dr. Paul Mwambu, Agriculture, Uganda, Projects, Awards, Blog">
+    <meta property="og:title" content="Search Results - Dr. Paul Mwambu">
+    <meta property="og:description" content="Search results for Dr. Paul Mwambu's portfolio, including projects, awards, blog posts, and more.">
+    <meta property="og:type" content="website">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-bg text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Search Results</h1>
+            {% if query %}
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                Search results for: <span class="font-semibold">"{{ query }}"</span>
+            </p>
+            {% else %}
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                Search across Dr. Paul Mwambu's portfolio for projects, awards, blog posts, and more.
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Search Form -->
+<section class="py-8 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <form method="get" action="{% url 'portfolio:search' %}" class="flex flex-col sm:flex-row gap-4">
+            <input type="text" name="q" value="{{ query }}" 
+                   placeholder="Search for projects, awards, blog posts..." 
+                   class="flex-1 form-input">
+            <button type="submit" class="btn-primary">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                Search
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Search Results -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% if query %}
+            {% if results.projects or results.awards or results.blog_posts %}
+            <div class="space-y-12">
+                <!-- Projects Results -->
+                {% if results.projects %}
+                <div class="animate-on-scroll">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                        Projects ({{ results.projects|length }})
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {% for project in results.projects %}
+                        <div class="card card-hover">
+                            <div class="relative overflow-hidden rounded-t-xl">
+                                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-48 object-cover">
+                                <div class="absolute top-4 right-4">
+                                    <span class="bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                        {{ project.get_status_display }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="text-lg font-bold mb-2">{{ project.title }}</h3>
+                                <p class="text-gray-600 mb-4">{{ project.description|truncatewords:20 }}</p>
+                                <a href="{% url 'portfolio:project_detail' project.pk %}" class="text-primary-600 hover:text-primary-700 font-medium">
+                                    Learn More →
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Awards Results -->
+                {% if results.awards %}
+                <div class="animate-on-scroll">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                        Awards ({{ results.awards|length }})
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {% for award in results.awards %}
+                        <div class="card card-hover">
+                            <div class="relative overflow-hidden rounded-t-xl">
+                                <img src="{{ award.image.url }}" alt="{{ award.name }}" class="w-full h-48 object-cover">
+                            </div>
+                            <div class="card-body">
+                                <h3 class="text-lg font-bold mb-2">{{ award.name }}</h3>
+                                <p class="text-gray-600 mb-2">{{ award.organization }}</p>
+                                <p class="text-gray-700 mb-4">{{ award.description|truncatewords:15 }}</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="bg-accent-100 text-accent-800 px-3 py-1 rounded-full text-sm font-medium">
+                                        {{ award.get_category_display }}
+                                    </span>
+                                    <span class="text-sm text-gray-500">{{ award.date|date:"M Y" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Blog Posts Results -->
+                {% if results.blog_posts %}
+                <div class="animate-on-scroll">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Blog Posts ({{ results.blog_posts|length }})
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {% for post in results.blog_posts %}
+                        <article class="card card-hover">
+                            {% if post.image %}
+                            <div class="relative overflow-hidden rounded-t-xl">
+                                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-48 object-cover">
+                            </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <span>{{ post.date|date:"M d, Y" }}</span>
+                                    <span class="mx-2">•</span>
+                                    <span>{{ post.author }}</span>
+                                </div>
+                                <h3 class="text-lg font-bold mb-2">
+                                    <a href="{% url 'portfolio:blog_detail' post.slug %}" class="text-gray-900 hover:text-primary-600 transition-colors">
+                                        {{ post.title }}
+                                    </a>
+                                </h3>
+                                <p class="text-gray-600 mb-4">{{ post.excerpt|truncatewords:20 }}</p>
+                                <a href="{% url 'portfolio:blog_detail' post.slug %}" class="text-primary-600 hover:text-primary-700 font-medium">
+                                    Read More →
+                                </a>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% else %}
+            <div class="text-center py-16">
+                <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">No Results Found</h3>
+                <p class="text-gray-600 mb-6">
+                    Sorry, we couldn't find any results for "{{ query }}". Try different keywords or browse our content.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{% url 'portfolio:projects' %}" class="btn-secondary">Browse Projects</a>
+                    <a href="{% url 'portfolio:awards' %}" class="btn-secondary">View Awards</a>
+                    <a href="{% url 'portfolio:blog' %}" class="btn-secondary">Read Blog</a>
+                </div>
+            </div>
+            {% endif %}
+            
+        {% else %}
+        <div class="text-center py-16">
+            <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Search the Portfolio</h3>
+            <p class="text-gray-600 mb-6">
+                Use the search form above to find specific projects, awards, blog posts, and more.
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Popular Searches -->
+{% if not query %}
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Popular Searches</h2>
+            <p class="section-subtitle">Common topics and areas of interest</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="{% url 'portfolio:search' %}?q=agriculture" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors">
+                Agriculture
+            </a>
+            <a href="{% url 'portfolio:search' %}?q=crop certification" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors">
+                Crop Certification
+            </a>
+            <a href="{% url 'portfolio:search' %}?q=rural development" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors">
+                Rural Development
+            </a>
+            <a href="{% url 'portfolio:search' %}?q=sustainable farming" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors">
+                Sustainable Farming
+            </a>
+            <a href="{% url 'portfolio:search' %}?q=leadership" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors">
+                Leadership
+            </a>
+            <a href="{% url 'portfolio:search' %}?q=policy" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors">
+                Policy
+            </a>
+            <a href="{% url 'portfolio:search' %}?q=research" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors">
+                Research
+            </a>
+            <a href="{% url 'portfolio:search' %}?q=international" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors">
+                International
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,351 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Contact Dr. Paul Mwambu - Agricultural Leader & Commissioner</title>
+    <meta name="description" content="Get in touch with Dr. Paul Mwambu for agricultural consultation, collaboration, or inquiries. Commissioner for Crop Inspection & Certification, Uganda.">
+    <meta name="keywords" content="Contact, Dr. Paul Mwambu, Agriculture, Uganda, Consultation, Collaboration, MAAIF">
+    <meta property="og:title" content="Contact Dr. Paul Mwambu - Agricultural Leader & Commissioner">
+    <meta property="og:description" content="Get in touch with Dr. Paul Mwambu for agricultural consultation, collaboration, or inquiries. Commissioner for Crop Inspection & Certification, Uganda.">
+    <meta property="og:type" content="website">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-bg text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h1>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                Ready to discuss agricultural development, rural empowerment, or sustainable farming practices? 
+                Let's connect and explore opportunities for collaboration.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form & Information -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div class="animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-6">Send a Message</h2>
+                <p class="text-gray-600 mb-8">
+                    Fill out the form below and I'll get back to you as soon as possible. 
+                    Whether you're interested in agricultural consultation, collaboration, 
+                    or have questions about crop certification, I'm here to help.
+                </p>
+                
+                <form id="contact-form" method="post" class="space-y-6">
+                    {% csrf_token %}
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="form-input" placeholder="Your full name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="form-input" placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                        <input type="text" id="subject" name="subject" required 
+                               class="form-input" placeholder="What's this about?">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="6" required 
+                                  class="form-textarea" placeholder="Tell me more about your inquiry..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="btn-primary w-full">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                </svg>
+                                Send Message
+                            </span>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Success/Error Messages -->
+                {% if messages %}
+                <div class="mt-6">
+                    {% for message in messages %}
+                    <div class="p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-6">Contact Information</h2>
+                <p class="text-gray-600 mb-8">
+                    You can reach me through various channels. I'm always interested in 
+                    discussing agricultural innovation, rural development, and opportunities 
+                    for collaboration.
+                </p>
+                
+                <div class="space-y-6">
+                    <!-- Email -->
+                    {% if site_settings.contact_email %}
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1">Email</h3>
+                            <p class="text-gray-600 mb-2">{{ site_settings.contact_email }}</p>
+                            <a href="mailto:{{ site_settings.contact_email }}" class="text-primary-600 hover:text-primary-700 font-medium">
+                                Send Email →
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Phone -->
+                    {% if site_settings.contact_phone %}
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1">Phone</h3>
+                            <p class="text-gray-600 mb-2">{{ site_settings.contact_phone }}</p>
+                            <a href="tel:{{ site_settings.contact_phone }}" class="text-primary-600 hover:text-primary-700 font-medium">
+                                Call Now →
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Address -->
+                    {% if site_settings.address %}
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1">Office Address</h3>
+                            <p class="text-gray-600">{{ site_settings.address }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Social Media -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1">Social Media</h3>
+                            <div class="flex space-x-4">
+                                {% if site_settings.social_linkedin %}
+                                <a href="{{ site_settings.social_linkedin }}" target="_blank" class="text-primary-600 hover:text-primary-700">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                </a>
+                                {% endif %}
+                                {% if site_settings.social_twitter %}
+                                <a href="{{ site_settings.social_twitter }}" target="_blank" class="text-primary-600 hover:text-primary-700">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                    </svg>
+                                </a>
+                                {% endif %}
+                                {% if site_settings.social_facebook %}
+                                <a href="{{ site_settings.social_facebook }}" target="_blank" class="text-primary-600 hover:text-primary-700">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    </svg>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Office Hours & Response Time -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Office Hours & Response Time</h2>
+            <p class="section-subtitle">When you can expect to hear back from me</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Office Hours</h3>
+                    <p class="text-gray-600 mb-4">Monday - Friday</p>
+                    <p class="text-gray-700">8:00 AM - 5:00 PM (EAT)</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Response Time</h3>
+                    <p class="text-gray-600 mb-4">Email Inquiries</p>
+                    <p class="text-gray-700">Within 24-48 hours</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Areas of Interest -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Areas of Interest</h2>
+            <p class="section-subtitle">Topics and areas where I'm particularly interested in collaboration</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Crop Certification</h3>
+                    <p class="text-gray-600">Quality assurance and export standards for agricultural products</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Sustainable Agriculture</h3>
+                    <p class="text-gray-600">Climate-smart farming and environmental conservation</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Rural Development</h3>
+                    <p class="text-gray-600">Community empowerment and youth engagement in agriculture</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Policy Development</h3>
+                    <p class="text-gray-600">Agricultural policy formulation and implementation</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">International Collaboration</h3>
+                    <p class="text-gray-600">Global partnerships and knowledge exchange</p>
+                </div>
+            </div>
+            
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Research & Innovation</h3>
+                    <p class="text-gray-600">Agricultural research and technology adoption</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Contact form validation and submission
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Submit form
+            form.submit();
+        });
+    }
+});
+</script>
+{% endblock %}

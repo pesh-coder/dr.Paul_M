@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Dr. Paul Mwambu - Agricultural Leader & Commissioner</title>
+    <meta name="description" content="Dr. Paul Mwambu, Commissioner for Crop Inspection & Certification, Ministry of Agriculture, Animal Industry, and Fisheries (MAAIF), Uganda. Prime Minister of Inzu Ya Masaba.">
+    <meta name="keywords" content="Dr. Paul Mwambu, Agriculture, Uganda, Crop Certification, Bamasaba, Inzu Ya Masaba, MAAIF">
+    <meta property="og:title" content="Dr. Paul Mwambu - Agricultural Leader & Commissioner">
+    <meta property="og:description" content="Leading Ugandan agricultural expert and administrator, recognized nationally and internationally for his work in crop certification, sustainable agriculture, and rural development.">
+    <meta property="og:image" content="{% if bio.photo %}{{ bio.photo.url }}{% else %}{% static 'images/dr-paul-mwambu.jpg' %}{% endif %}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dr. Paul Mwambu - Agricultural Leader & Commissioner">
+    <meta name="twitter:description" content="Leading Ugandan agricultural expert and administrator, recognized nationally and internationally for his work in crop certification, sustainable agriculture, and rural development.">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-bg text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="animate-on-scroll">
+                {% if bio.photo %}
+                <div class="mb-8">
+                    <img src="{{ bio.photo.url }}" alt="Dr. Paul Mwambu" class="w-64 h-64 rounded-full object-cover mx-auto lg:mx-0 shadow-2xl">
+                </div>
+                {% endif %}
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    Dr. Paul Mwambu
+                </h1>
+                <h2 class="text-xl md:text-2xl text-blue-100 mb-6">
+                    {{ bio.title|default:"Commissioner for Crop Inspection & Certification" }}
+                </h2>
+                <p class="text-lg text-blue-100 mb-8 leading-relaxed">
+                    {{ bio.bio|truncatewords:30|default:"Leading Ugandan agricultural expert and administrator, recognized nationally and internationally for his work in crop certification, sustainable agriculture, and rural development." }}
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="{% url 'portfolio:about' %}" class="btn-primary inline-flex items-center justify-center">
+                        Learn More
+                        <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                    {% if bio.cv %}
+                    <a href="{{ bio.cv.url }}" target="_blank" class="btn-outline inline-flex items-center justify-center">
+                        Download CV
+                        <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="animate-on-scroll">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6">Current Roles</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Commissioner for Crop Inspection & Certification</h4>
+                                <p class="text-blue-100 text-sm">Ministry of Agriculture, Animal Industry, and Fisheries (MAAIF), Uganda</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Prime Minister of Inzu Ya Masaba</h4>
+                                <p class="text-blue-100 text-sm">Leading cultural, social, and agricultural initiatives for the Bamasaba community (appointed Dec 2024)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Highlights -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Impact & Achievements</h2>
+            <p class="section-subtitle">Over 30 years of dedicated service to agriculture, policy, research, and rural development in Uganda</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Impact Card -->
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">30+ Years Experience</h3>
+                    <p class="text-gray-600">Extensive experience in agriculture, policy, research, and rural development across Uganda and internationally.</p>
+                </div>
+            </div>
+            
+            <!-- Awards Card -->
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Diamond Jubilee Medal</h3>
+                    <p class="text-gray-600">Recognized with Uganda's Diamond Jubilee Medal for outstanding agricultural service (May 2024).</p>
+                </div>
+            </div>
+            
+            <!-- Leadership Card -->
+            <div class="card card-hover animate-on-scroll">
+                <div class="card-body text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">International Leadership</h3>
+                    <p class="text-gray-600">Championed national and international collaborations with World Bank, UNDP, and other global organizations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+{% if featured_projects %}
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Key initiatives and programs led by Dr. Paul Mwambu in agricultural development and rural empowerment</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in featured_projects %}
+            <div class="card card-hover animate-on-scroll">
+                <div class="relative overflow-hidden rounded-t-xl">
+                    <img src="" alt="{{ project.title }}" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            {{ project.get_status_display }}
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-xl font-bold mb-2">{{ project.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ project.description|truncatewords:20 }}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">{{ project.start_date|date:"M Y" }}</span>
+                        <a href="{% url 'portfolio:project_detail' project.pk %}" class="text-primary-600 hover:text-primary-700 font-medium">
+                            Learn More →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'portfolio:projects' %}" class="btn-primary">
+                View All Projects
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Featured Awards -->
+{% if featured_awards %}
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Recent Awards & Recognition</h2>
+            <p class="section-subtitle">Honors and recognition received for outstanding contributions to agriculture and rural development</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for award in featured_awards %}
+            <div class="card card-hover animate-on-scroll">
+                <div class="relative overflow-hidden rounded-t-xl">
+                    <img src="" alt="{{ award.name }}" class="w-full h-48 object-cover">
+                </div>
+                <div class="card-body">
+                    <h3 class="text-xl font-bold mb-2">{{ award.name }}</h3>
+                    <p class="text-gray-600 mb-2">{{ award.organization }}</p>
+                    <p class="text-gray-600 mb-4">{{ award.description|truncatewords:15 }}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">{{ award.date|date:"M Y" }}</span>
+                        <span class="bg-accent-100 text-accent-800 px-3 py-1 rounded-full text-sm font-medium">
+                            {{ award.get_category_display }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'portfolio:awards' %}" class="btn-primary">
+                View All Awards
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Featured Testimonials -->
+{% if featured_testimonials %}
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">What People Say</h2>
+            <p class="section-subtitle">Testimonials from colleagues, partners, and stakeholders</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for testimonial in featured_testimonials %}
+            <div class="testimonial-card animate-on-scroll">
+                <div class="flex items-center mb-4">
+                    {% if testimonial.image %}
+                    <img src="{{ testimonial.image.url }}" alt="{{ testimonial.author }}" class="w-12 h-12 rounded-full object-cover mr-4">
+                    {% else %}
+                    <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-primary-600 font-bold text-lg">{{ testimonial.author|first }}</span>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <h4 class="font-semibold">{{ testimonial.author }}</h4>
+                        <p class="text-sm text-gray-600">{{ testimonial.position }}</p>
+                        <p class="text-sm text-gray-500">{{ testimonial.organization }}</p>
+                    </div>
+                </div>
+                <blockquote class="text-gray-700 italic">
+                    "{{ testimonial.quote|truncatewords:25 }}"
+                </blockquote>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'portfolio:testimonials' %}" class="btn-primary">
+                Read More Testimonials
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Gallery Preview -->
+{% if featured_gallery %}
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Gallery</h2>
+            <p class="section-subtitle">Moments from Dr. Paul Mwambu's work and achievements</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {% for image in featured_gallery %}
+            <div class="gallery-item animate-on-scroll">
+                <img src="{{ image.image.url }}" alt="{{ image.caption }}" class="w-full h-32 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                    <div class="text-white opacity-0 hover:opacity-100 transition-opacity duration-300 text-center p-2">
+                        <p class="text-sm font-medium">{{ image.caption }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'portfolio:gallery' %}" class="btn-primary">
+                View Full Gallery
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Featured Blog Posts -->
+{% if featured_blog_posts %}
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="section-title">Latest Updates</h2>
+            <p class="section-subtitle">Recent insights and updates from Dr. Paul Mwambu</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for post in featured_blog_posts %}
+            <div class="card card-hover animate-on-scroll">
+                {% if post.image %}
+                <div class="relative overflow-hidden rounded-t-xl">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-48 object-cover">
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h3 class="text-xl font-bold mb-2">{{ post.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ post.excerpt|truncatewords:20 }}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">{{ post.date|date:"M d, Y" }}</span>
+                        <a href="{% url 'portfolio:blog_detail' post.slug %}" class="text-primary-600 hover:text-primary-700 font-medium">
+                            Read More →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'portfolio:blog' %}" class="btn-primary">
+                View All Posts
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Call to Action -->
+<section class="py-16 hero-bg text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Connect?</h2>
+        <p class="text-xl text-blue-100 mb-8">
+            Let's discuss agricultural development, rural empowerment, and sustainable farming practices.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'portfolio:contact' %}" class="btn-primary bg-white text-primary-600 hover:bg-gray-100">
+                Get In Touch
+            </a>
+            <a href="{% url 'portfolio:about' %}" class="btn-outline border-white text-white hover:bg-white hover:text-primary-600">
+                Learn More
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
