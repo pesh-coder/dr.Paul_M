@@ -136,7 +136,6 @@ yarn-error.log*
 
 # Static files
 staticfiles/
-static/css/output.css
 
 # Media files
 media/
