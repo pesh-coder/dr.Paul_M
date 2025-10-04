@@ -114,4 +114,50 @@
                                 <div class="text-center py-8">
                                     <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
                                         <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-600 text-sm">More related posts coming soon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold mb-6">Interested in This Topic?</h2>
+        <p class="text-xl text-gray-600 mb-8">
+            Let's discuss how we can work together on agricultural development, 
+            rural empowerment, or sustainable farming initiatives.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'portfolio:contact' %}" class="btn-primary">
+                Get In Touch
+            </a>
+            <a href="{{ page.get_parent.url }}" class="btn-secondary">
+                Read More Posts
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation -->
+<section class="py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+            <a href="{{ page.get_parent.url }}" class="btn-secondary">
+                ← Back to Blog
+            </a>
+            <a href="{% url 'portfolio:contact' %}" class="btn-primary">
+                Contact Dr. Paul Mwambu
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

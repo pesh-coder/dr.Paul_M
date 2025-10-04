@@ -21,8 +21,8 @@ urlpatterns = [
     path('gallery/', views.gallery, name='gallery'),
     
     # Blog
-    path('blog/', views.BlogListView.as_view(), name='blog'),
-    path('blog/<slug:slug>/', views.BlogDetailView.as_view(), name='blog_detail'),
+    #path('blog/', views.BlogListView.as_view(), name='blog'),
+    #path('blog/<slug:slug>/', views.BlogDetailView.as_view(), name='blog_detail'),
     
     # Testimonials
     path('testimonials/', views.testimonials, name='testimonials'),

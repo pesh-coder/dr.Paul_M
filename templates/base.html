@@ -76,7 +76,7 @@
                         <a href="{% url 'portfolio:projects' %}" class="nav-link {% if request.resolver_match.url_name == 'projects' %}active{% endif %}">Projects</a>
                         <a href="{% url 'portfolio:awards' %}" class="nav-link {% if request.resolver_match.url_name == 'awards' %}active{% endif %}">Awards</a>
                         <a href="{% url 'portfolio:gallery' %}" class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a>
-                        <a href="{% url 'portfolio:blog' %}" class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog</a>
+                        <a href="/blog/" class="nav-link {% if request.path|slice:':6' == '/blog' %}active{% endif %}">Blog</a>
                         <a href="{% url 'portfolio:testimonials' %}" class="nav-link {% if request.resolver_match.url_name == 'testimonials' %}active{% endif %}">Testimonials</a>
                         <a href="{% url 'portfolio:contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
                     </div>
@@ -101,7 +101,7 @@
                 <a href="{% url 'portfolio:projects' %}" class="nav-link block px-3 py-2 text-base font-medium">Projects</a>
                 <a href="{% url 'portfolio:awards' %}" class="nav-link block px-3 py-2 text-base font-medium">Awards</a>
                 <a href="{% url 'portfolio:gallery' %}" class="nav-link block px-3 py-2 text-base font-medium">Gallery</a>
-                <a href="{% url 'portfolio:blog' %}" class="nav-link block px-3 py-2 text-base font-medium">Blog</a>
+                <a href="/blog/" class="nav-link block px-3 py-2 text-base font-medium">Blog</a>
                 <a href="{% url 'portfolio:testimonials' %}" class="nav-link block px-3 py-2 text-base font-medium">Testimonials</a>
                 <a href="{% url 'portfolio:contact' %}" class="nav-link block px-3 py-2 text-base font-medium">Contact</a>
             </div>
@@ -162,7 +162,7 @@
                         <li><a href="{% url 'portfolio:projects' %}" class="text-gray-300 hover:text-white transition-colors">Projects</a></li>
                         <li><a href="{% url 'portfolio:awards' %}" class="text-gray-300 hover:text-white transition-colors">Awards</a></li>
                         <li><a href="{% url 'portfolio:gallery' %}" class="text-gray-300 hover:text-white transition-colors">Gallery</a></li>
-                        <li><a href="{% url 'portfolio:blog' %}" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="/blog/" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
                     </ul>
                 </div>
                 
